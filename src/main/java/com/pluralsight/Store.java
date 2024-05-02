@@ -18,27 +18,28 @@ public class Store {
 
         // ✓Create scanner to read user input
         Scanner scanner = new Scanner(System.in);
-        int choice = -1;
+        boolean running = true;
 
         // ✓Display menu and get user choice until they choose to exit
-        while (choice != 3) {
+        while (running) {
             System.out.println("Welcome to the Online Store!");
-            System.out.println("1. Show Products");
+            System.out.println("1. Products");
             System.out.println("2. Show Cart");
             System.out.println("3. Exit");
 
-            choice = scanner.nextInt();
+            int input = scanner.nextInt();
             scanner.nextLine();
 
             // ✓Call the appropriate method based on user choice
-            switch (choice) {
+            switch (input) {
                 case 1:
-                    displayProducts(inventory, cart, scanner);
+                    productsMenu(scanner,inventory,cart);
                     break;
                 case 2:
                     displayCart(cart, scanner, totalAmount);
                     break;
                 case 3:
+                    running = false;
                     System.out.println("Thank you for shopping with us!");
                     break;
                 default:
@@ -66,7 +67,40 @@ public class Store {
         }
     }
 
+    public static  void productsMenu(Scanner scanner, ArrayList<Product> inventory, ArrayList<Product> cart){
+        boolean running = true;
+
+        while (running) {
+            System.out.println("Products");
+            System.out.println("1. Search for a product");
+            System.out.println("2. Add a product to cart");
+            System.out.println("3. Go back home");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            // ✓Call the appropriate method based on user choice
+            switch (choice) {
+                case 1:
+                    searchProducts();
+                    break;
+                case 2:
+                    displayProducts(inventory, cart, scanner);
+                    break;
+                case 3:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+                    break;
+            }
+        }
+
+    }
+
     public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner scanner) {
+
+
         System.out.println("Products: ");
         for (Product product : inventory) {
             System.out.println(product.getId() + " - " + product.getName() + " - $" + product.getPrice());
@@ -101,6 +135,24 @@ public class Store {
                     ") - Price: $" + product.getPrice());
         }
         System.out.println("Total Price: $" + totalAmount);
+        System.out.println("To remove a product from the cart enter the product ID: ");
+
+        String inputID = scanner.nextLine();
+        for (Product product : cart) {
+            if (product.getId().equalsIgnoreCase(inputID)) {
+                cart.remove(product);
+                System.out.println("Product has been removed.");
+
+            }
+
+        }
+
+        System.out.println("Updated cart:");
+        for (Product product : cart) {
+            System.out.println(product);
+
+
+        }
     }
 
         // ✓This method should display the items in the cart ArrayList, along
@@ -109,6 +161,10 @@ public class Store {
         // of the product they want to remove. The method should update the cart ArrayList and totalAmount
         // variable accordingly.
 
+
+    public static void searchProducts(){
+
+    }
 
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
         // This method should calculate the total cost of all items in the cart,
