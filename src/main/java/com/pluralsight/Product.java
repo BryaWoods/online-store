@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
+
 public class Product {
 
     private String id;
@@ -34,5 +36,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+    public static Product findProductById(ArrayList<Product> inventory, String productId) {
+        for (Product product : inventory) {
+            if (product.getId().equalsIgnoreCase(productId)) {
+                return product; // Found the product, return it
+            }
+        }
+        return null; // Product with specified ID not found
     }
 }

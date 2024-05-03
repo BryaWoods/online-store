@@ -6,22 +6,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static com.pluralsight.Product.findProductById;
+
 public class Store {
     private static ArrayList<Product> inventory = new ArrayList<Product>();
     private static ArrayList<Product> cart = new ArrayList<Product>();
 
     public static void main(String[] args) {
-        // Initialize variables
         double totalAmount = 0.0;
 
-        // ✓Load inventory from CSV file
         loadInventory("products.csv");
 
-        // ✓Create scanner to read user input
         Scanner scanner = new Scanner(System.in);
+
         boolean running = true;
 
-        // ✓Display menu and get user choice until they choose to exit
         while (running) {
             System.out.println("Welcome to the Online Store!");
             System.out.println("1. Products");
@@ -31,7 +30,7 @@ public class Store {
             int input = scanner.nextInt();
             scanner.nextLine();
 
-            // ✓Call the appropriate method based on user choice
+
             switch (input) {
                 case 1:
                     displayProducts(inventory, cart, scanner);
@@ -104,29 +103,10 @@ public class Store {
                     break;
             }
         }
-
-        System.out.println("\nAdd items to your cart:");
-        System.out.print("Enter the ID of the product you want to add: ");
-        String productId = scanner.nextLine();
-
-        Product selectedProduct = findProductById(inventory, productId);
-        if (selectedProduct != null) {
-            cart.add(selectedProduct);
-            System.out.println(selectedProduct.getName() + " (ID: " + selectedProduct.getId() +
-                    ") added to cart");
-        } else {
-            System.out.println("Product not found.");
-        }
-
-        // ✓This method should display a list of products from the inventory,
-        // ✓and prompt the user to add items to their cart. The method should
-        // ✓prompt the user to enter the ID of the product they want to add to
-        // ✓their cart. The method should
-        // ✓add the selected product to the cart ArrayList.
-        //question for raymond do they need the option to add another item or should it automatically return home?????
     }
 
     public static void addToCart(Scanner scanner, ArrayList<Product> inventory, ArrayList<Product> cart) {
+
         System.out.println("\nAdd items to your cart:");
         System.out.print("Enter the ID of the product you want to add: ");
         String productId = scanner.nextLine();
@@ -150,24 +130,36 @@ public class Store {
                     ") - Price: $" + product.getPrice());
         }
         System.out.println("Total Price: $" + totalAmount);
-        System.out.println("To remove a product from the cart enter the product ID: ");
+        System.out.println(" ");
 
-        String inputID = scanner.nextLine();
-        for (Product product : cart) {
-            if (product.getId().equalsIgnoreCase(inputID)) {
-                cart.remove(product);
-                System.out.println("Product has been removed.");
+        boolean running = true;
 
+        while (running) {
+            System.out.println(" ");
+            System.out.println("1. Check Out");
+            System.out.println("2. Edit Cart");
+            System.out.println("3. Continue Shopping ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            // ✓Call the appropriate method based on user choice
+            switch (choice) {
+                case 1:
+                    //checkOut();
+                    break;
+                case 2:
+                    editCart(scanner);
+                    break;
+                case 3:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+                    break;
             }
-
         }
 
-        System.out.println("Updated cart:");
-        for (Product product : cart) {
-            System.out.println(product);
-
-
-        }
     }
 
     // ✓This method should display the items in the cart ArrayList, along
@@ -276,7 +268,7 @@ public class Store {
     }
 
 
-    public static void filterByUnderTwenty(){
+    public static void filterByUnderTwenty() {
         boolean foundProducts = false;
         for (Product product : inventory) {
             if (product.getPrice() <= 20) {
@@ -300,19 +292,26 @@ public class Store {
         // from their account if they confirm.
     }
 
-    public static Product findProductById(ArrayList<Product> inventory, String id) {
-        for (Product product : inventory) {
-            if (product.getId().equals(id)) {
-                return product;
+    public static void editCart(Scanner scanner){
+        System.out.println("To remove a product from the cart enter the product ID: ");
+
+        String inputID = scanner.nextLine();
+        for (Product product : cart) {
+            if (product.getId().equalsIgnoreCase(inputID)) {
+                cart.remove(product);
+                System.out.println("Product has been removed.");
 
             }
+
         }
-        return null;
+
+        System.out.println("Updated cart:");
+        for (Product product : cart) {
+            System.out.println(product);
 
 
+        }
     }
-        // ✓This method should search the inventory ArrayList for a product with
-        // ✓the specified ID, and return the corresponding Product object. If
-        // ✓no product with the specified ID is found, the method should return
-        // null.
-    }
+
+}
+
