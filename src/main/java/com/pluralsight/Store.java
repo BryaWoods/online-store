@@ -22,7 +22,7 @@ public class Store {
         boolean running = true;
 
         while (running) {
-            System.out.println("Welcome to the Online Store!");
+            System.out.println(" ♱ ❦ 𝔅𝔦𝔢𝔫𝓋𝔢𝔫𝔦𝔡𝔬𝔰 𝔞 𝓒𝔥𝔦𝔠𝔞𝔰 𝓓𝔢 𝓜𝔬𝓭𝔞 ❦ ♱");
             System.out.println("1. Products");
             System.out.println("2. Show Cart");
             System.out.println("3. Exit");
@@ -143,10 +143,9 @@ public class Store {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            // ✓Call the appropriate method based on user choice
             switch (choice) {
                 case 1:
-                    //checkOut();
+                    checkOut(cart, totalAmount, scanner);
                     break;
                 case 2:
                     editCart(scanner);
@@ -285,14 +284,36 @@ public class Store {
     }
 
 
-    public static void checkOut(ArrayList<Product> cart, double totalAmount) {
-        // This method should calculate the total cost of all items in the cart,
-        // and display a summary of the purchase to the user. The method should
-        // prompt the user to confirm the purchase, and deduct the total cost
-        // from their account if they confirm.
+    public static void checkOut(ArrayList<Product> cart, double totalAmount, Scanner scanner) {
+        System.out.println("\nYour Cart:");
+        for (Product product : cart) {
+            System.out.println(product.getName() + " (ID: " + product.getId() +
+                    ") - Price: $" + product.getPrice());
+        }
+        System.out.println("Total Price: $" + totalAmount);
+        System.out.println(" ");
+        System.out.println("Place order?");
+        System.out.println("Enter Y for yes or X to return home");
+        String placeOrder = scanner.nextLine();
+
+        if (placeOrder.equalsIgnoreCase("Y")) {
+            System.out.println("Thanks for yor purchase baddie ❤︎. Total amount deducted: $" + totalAmount);
+            cart.clear();
+            // Assuming confirmPurchase method deducts from account
+        } else if (placeOrder.equalsIgnoreCase("X")) {
+            System.out.println("Returning to previous screen.");
+        } else {
+            System.out.println("Invalid input. Returning to previous screen.");
+        }
     }
 
-    public static void editCart(Scanner scanner){
+
+    // This method should calculate the total cost of all items in the cart,
+    // and display a summary of the purchase to the user. The method should
+    // prompt the user to confirm the purchase, and deduct the total cost
+    // from their account if they confirm
+
+    public static void editCart(Scanner scanner) {
         System.out.println("To remove a product from the cart enter the product ID: ");
 
         String inputID = scanner.nextLine();
@@ -312,6 +333,7 @@ public class Store {
 
         }
     }
-
 }
+
+
 
