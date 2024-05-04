@@ -1,17 +1,32 @@
-# Project Title
+# Online Store 🛍️
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+Online Store is a user-friendly e-commerce platform designed to 
+provide customers with a seamless shopping experience. 
+The app features a Store Home Screen with options to display products, 
+manage the cart, and exit. Customers can search, filter, and add 
+products to their cart in the Display Products section. The Display Cart section allows 
+them to view cart contents, remove products, and proceed to checkout. The app includes a checkout 
+process with cash payment, change calculation, and a sales receipt generation feature that saves receipts 
+with timestamps in a Receipts folder.
 
-![Class Diagram](path/to/your/class_diagram.png)
 
 ## User Stories
 
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to see a list of options on the home screen, 
+including options to display products, view my cart, 
+and exit the application, so that I can easily navigate and choose what action to take next.
+- As a user, I want to view a list of products available in the store and 
+have the ability to search or filter the list, add products 
+to my cart, and navigate back to the home screen, providing a seamless shopping experience.
+- As a user, I want to see a list of items in my cart along with the total sales amount, 
+have the option to check out, remove products from my cart, 
+and navigate back to the home screen, ensuring 
+I can manage my purchases efficiently.
+
+
 
 ## Setup
 
@@ -34,8 +49,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Java: JDK 17
 
 ## Demo
 
@@ -66,5 +80,5 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
+- Thank you to Raymond Maroun for continuous support and guidance.
 - A special thanks to all teammates for their dedication and teamwork.

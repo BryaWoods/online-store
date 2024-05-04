@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import static com.pluralsight.Product.findProductById;
@@ -47,6 +48,7 @@ public class Store {
                     break;
             }
         }
+        scanner.close();
     }
 
     public static void loadInventory(String filename) {
@@ -70,6 +72,7 @@ public class Store {
 
     public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner scanner) {
 
+        inventory.sort(Comparator.comparing(Product::getName));
 
         System.out.println("Products: ");
         for (Product product : inventory) {
@@ -87,7 +90,6 @@ public class Store {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
-            // ✓Call the appropriate method based on user choice
             switch (choice) {
                 case 1:
                     searchProducts(scanner);
@@ -160,12 +162,6 @@ public class Store {
         }
 
     }
-
-    // ✓This method should display the items in the cart ArrayList, along
-    // ✓with the total cost of all items in the cart. The method should
-    // prompt the user to remove items from their cart by entering the ID
-    // of the product they want to remove. The method should update the cart ArrayList and totalAmount
-    // variable accordingly.
 
 
     public static void searchProducts(Scanner scanner) {
@@ -307,11 +303,6 @@ public class Store {
         }
     }
 
-
-    // This method should calculate the total cost of all items in the cart,
-    // and display a summary of the purchase to the user. The method should
-    // prompt the user to confirm the purchase, and deduct the total cost
-    // from their account if they confirm
 
     public static void editCart(Scanner scanner) {
         System.out.println("To remove a product from the cart enter the product ID: ");
