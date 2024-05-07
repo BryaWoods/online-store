@@ -1,0 +1,8 @@
+Sales Receipt
+
+Date and Time: 202405071626
+Total Amount: $23.939999999999998
+
+Cart Contents:
+Billie Eilish Necklace (ID: LIT888) - Price: $9.99
+Ice Spice Flag (ID: SKI202) - Price: $13.95

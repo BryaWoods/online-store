@@ -1,0 +1,8 @@
+Sales Receipt
+
+Date and Time: 202405071638
+Total Amount: $152.95999999999998
+
+Cart Contents:
+Playboy Calendar (ID: SKI404) - Price: $7.99
+Super Nova Tanning Lotion (ID: LIT555) - Price: $121.99

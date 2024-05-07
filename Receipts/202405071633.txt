@@ -1,0 +1,8 @@
+Sales Receipt
+
+Date and Time: 202405071633
+Total Amount: $102.97999999999999
+
+Cart Contents:
+Kendrick Lamar Nike Cortez (ID: KLD505) - Price: $84.99
+Section. 80 Record (ID: LIT777) - Price: $17.99

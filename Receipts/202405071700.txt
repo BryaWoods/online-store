@@ -1,0 +1,8 @@
+Sales Receipt
+
+Date and Time: 202405071700
+Total Amount: $194.94
+
+Cart Contents:
+Bad Bunny Hoodie (ID: BMW222) - Price: $149.95
+GTA VI (ID: BMW333) - Price: $44.99
