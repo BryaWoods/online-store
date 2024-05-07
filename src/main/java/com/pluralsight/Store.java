@@ -2,10 +2,7 @@ package com.pluralsight;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 import static com.pluralsight.Product.findProductById;
 
@@ -21,6 +18,8 @@ public class Store {
         Scanner scanner = new Scanner(System.in);
 
         boolean running = true;
+
+        int input = 0;
 
         while (running) {
             System.out.println(
@@ -47,8 +46,15 @@ public class Store {
             System.out.println("2. Show Cart");
             System.out.println("3. Exit");
 
-            int input = scanner.nextInt();
-            scanner.nextLine();
+
+            try {
+                input = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                scanner.nextLine();
+                continue;
+            }
 
 
             switch (input) {
@@ -105,6 +111,7 @@ public class Store {
 
 
         boolean running = true;
+        int choice;
 
         while (running) {
             System.out.println(" ");
@@ -112,8 +119,15 @@ public class Store {
             System.out.println("2. Add a product to cart");
             System.out.println("0. Go back home");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                scanner.nextLine();
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -163,18 +177,30 @@ public class Store {
 
         boolean running = true;
 
+        int choice;
+
         while (running) {
             System.out.println(" ");
             System.out.println("1. Check Out");
             System.out.println("2. Edit Cart");
             System.out.println("3. Continue Shopping ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+
+
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                scanner.nextLine();
+                continue;
+            }
+
 
             switch (choice) {
                 case 1:
                     checkOut(cart, totalAmount, scanner);
+                    running = false;
                     break;
                 case 2:
                     editCart(scanner);
@@ -193,6 +219,8 @@ public class Store {
 
     public static void searchProducts(Scanner scanner) {
         boolean running = true;
+
+
         while (running) {
             System.out.println("1) Product ID");
             System.out.println("2) Product Name");
@@ -206,7 +234,8 @@ public class Store {
                 case "1":
                     System.out.println("Enter Product ID: ");
                     String id = scanner.nextLine().trim();
-                    filterById(id, scanner);
+                    filterById(id);
+                    running = false;
                     break;
 
 
@@ -214,16 +243,19 @@ public class Store {
                     System.out.println("Enter Product Name: ");
                     String name = scanner.nextLine().trim();
                     filterByName(name, scanner);
+                    running = false;
                     break;
 
 
                 case "3":
-                    filterByUnderTwenty(scanner);
+                    filterByUnderTwenty();
+                    running = false;
                     break;
 
 
                 case "4":
                     filterByUnderFifty(scanner);
+                    running = false;
                     break;
 
                 case "0":
@@ -239,10 +271,10 @@ public class Store {
 
     }
 
-    public static void filterById(String id, Scanner scanner) {
+    public static void filterById(String id) {
         for (Product product : inventory) {
             if (product.getId().equalsIgnoreCase(id)) {
-                displayProductDetails(product, scanner);
+                displayProductDetails(product);
                 return;
             }
         }
@@ -252,19 +284,20 @@ public class Store {
     public static void filterByName(String name, Scanner scanner) {
         for (Product product : inventory) {
             if (product.getName().equalsIgnoreCase(name)) {
-                displayProductDetails(product, scanner);
+                displayProductDetails(product);
                 return;
             }
         }
         System.out.println("No product found with name: " + name);
     }
 
-    private static void displayProductDetails(Product product, Scanner scanner) {
-        System.out.println("ID: " + product.getId() +
-                " | Name: " + product.getName() +
-                " | Price: " + product.getPrice());
-        System.out.println(" ");
-        System.out.println("1. Add an item to cart");
+    private static void displayProductDetails(Product product) {
+        System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
+        System.out.printf("✰%-8s | %-30s | %-10s %-10s%n",  "ID", "Name", "Price", "✰");
+        System.out.printf("✰%-8s | %-30s | %-10s %-10s%n" ,product.getId()  , product.getName() , product.getPrice(),"✰" );
+        System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
+
+        /*System.out.println("1. Add an item to cart");
         System.out.println("0. Go back");
         int addSearch = scanner.nextInt();
         scanner.nextLine();
@@ -284,30 +317,27 @@ public class Store {
         } else if (addSearch2 == 0) {
             System.out.println("Returning to previous page.");
             System.out.println(" ");
-        }
+        }*/
     }
 
 
-    public static void filterByUnderTwenty(Scanner scanner) {
+    public static void filterByUnderTwenty() {
         ArrayList<Product> productsUnder20 = new ArrayList<>();
-        boolean foundProducts = false;
 
-        // Filter products under $20 and add them to the productsUnder20 list
         for (Product product : inventory) {
             if (product.getPrice() < 20) {
                 productsUnder20.add(product);
             }
         }
+        System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
+        System.out.printf("✰%-8s | %-30s | %-10s %-10s%n",  "ID", "Name", "Price", "✰");
 
-        // Display all products under $20
         for (Product product : productsUnder20) {
-            System.out.println("ID: " + product.getId() +
-                    " | Name: " + product.getName() +
-                    " | Price: " + product.getPrice());
+            System.out.printf("✰%-8s | %-30s | %-10s %-10s%n" ,product.getId()  , product.getName() , product.getPrice(),"✰" );
         }
+        System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
 
-        // Ask the user to add products to the cart
-        System.out.println("\nDo you want to add any of these products to your cart? Enter the ID of the product to add or 0 to go back.");
+       /* System.out.println("\nDo you want to add any of these products to your cart? Enter the ID of the product to add or 0 to go back.");
         String input = scanner.nextLine().trim();
         if (!input.equals("0")) {
             Product selectedProduct = findProductById(productsUnder20, input);
@@ -320,13 +350,12 @@ public class Store {
             }
         } else {
             System.out.println("Returning to previous page.");
-        }
+        }*/
     }
 
 
     public static void filterByUnderFifty(Scanner scanner) {
         ArrayList<Product> productsUnder50 = new ArrayList<>();
-        boolean foundProducts = false;
 
         for (Product product : inventory) {
             if (product.getPrice() <= 50) {
@@ -341,7 +370,7 @@ public class Store {
                     " | Price: " + product.getPrice());
         }
 
-        System.out.println("\nDo you want to add any of these products to your cart? Enter the ID of the product to add or 0 to go back.");
+       /* System.out.println("\nDo you want to add any of these products to your cart? Enter the ID of the product to add or 0 to go back.");
         String input = scanner.nextLine().trim();
         if (!input.equals("0")) {
             Product selectedProduct = findProductById(productsUnder50, input);
@@ -354,7 +383,7 @@ public class Store {
             }
         } else {
             System.out.println("Returning to previous page.");
-        }
+        }*/
     }
 
 
@@ -377,9 +406,10 @@ public class Store {
             cart.clear();
             // IMPORTANT ☝︎ that will empty the cart after checkout
         } else if (placeOrder.equalsIgnoreCase("X")) {
-            System.out.println("Returning to previous screen.");
+            System.out.println(" Returning home.");
+
         } else {
-            System.out.println("Invalid input. Returning to previous screen.");
+            System.out.println("Invalid input. Returning home.");
         }
     }
 
@@ -434,7 +464,6 @@ public class Store {
                         ") - Price: $" + product.getPrice() + "\n");
             }
 
-            // Close the writer
             writer.close();
         } catch (IOException e) {
             System.out.println("Error creating receipt file: " + e.getMessage());

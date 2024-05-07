@@ -1,0 +1,7 @@
+Sales Receipt
+
+Date and Time: 202405071522
+Total Amount: $22.98
+
+Cart Contents:
+Rosalía Eyeshadow Pallet (ID: KLD606) - Price: $22.98
