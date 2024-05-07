@@ -1,10 +1,10 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.time.LocalDate;
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Scanner;
 
 import static com.pluralsight.Product.findProductById;
@@ -23,6 +23,25 @@ public class Store {
         boolean running = true;
 
         while (running) {
+            System.out.println(
+                    "             ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓██████▓▒░ ░▒▓███████▓▒░          \n" +
+                    "            ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░                 \n" +
+                    "            ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░                 \n" +
+                    "            ░▒▓█▓▒░      ░▒▓████████▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓████████▓▒░░▒▓██████▓▒░           \n" +
+                    "            ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░          \n" +
+                    "            ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░          \n" +
+                    "             ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░           \n" +
+                    "                                                                                              \n" +
+                    "                                                                                              \n" +
+                    "░▒▓███████▓▒░░▒▓████████▓▒░      ░▒▓██████████████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░ ░▒▓██████▓▒░  \n" +
+                    "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ \n" +
+                    "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ \n" +
+                    "░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░        ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░ \n" +
+                    "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ \n" +
+                    "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ \n" +
+                    "░▒▓███████▓▒░░▒▓████████▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░ "
+
+                  );
             System.out.println(" ♱ ❦ 𝔅𝔦𝔢𝔫𝓋𝔢𝔫𝔦𝔡𝔬𝔰 𝔞 𝓒𝔥𝔦𝔠𝔞𝔰 𝓓𝔢 𝓜𝔬𝓭𝔞 ❦ ♱");
             System.out.println("1. Products");
             System.out.println("2. Show Cart");
@@ -74,10 +93,16 @@ public class Store {
 
         inventory.sort(Comparator.comparing(Product::getName));
 
-        System.out.println("Products: ");
+        System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
+        System.out.printf("✰%-8s | %-30s | %-10s %-10s%n",  "ID", "Name", "Price", "✰");
+
+
         for (Product product : inventory) {
-            System.out.println(product.getId() + " - " + product.getName() + " - $" + product.getPrice());
+            System.out.printf("✰%-8s | %-30s | %-10s %-10s%n" ,product.getId()  , product.getName() , product.getPrice(),"✰" );
+
         }
+        System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
+
 
         boolean running = true;
 
@@ -85,7 +110,7 @@ public class Store {
             System.out.println(" ");
             System.out.println("1. Search for a product");
             System.out.println("2. Add a product to cart");
-            System.out.println("3. Go back home");
+            System.out.println("0. Go back home");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -97,7 +122,7 @@ public class Store {
                 case 2:
                     addToCart(scanner, inventory, cart);
                     break;
-                case 3:
+                case 0:
                     running = false;
                     break;
                 default:
@@ -110,14 +135,16 @@ public class Store {
     public static void addToCart(Scanner scanner, ArrayList<Product> inventory, ArrayList<Product> cart) {
 
         System.out.println("\nAdd items to your cart:");
-        System.out.print("Enter the ID of the product you want to add: ");
+        System.out.println("Enter the ID of the product you want to add: ");
         String productId = scanner.nextLine();
 
         Product selectedProduct = findProductById(inventory, productId);
         if (selectedProduct != null) {
             cart.add(selectedProduct);
+            System.out.println(" ");
             System.out.println(selectedProduct.getName() + " (ID: " + selectedProduct.getId() +
                     ") added to cart");
+            System.out.println(" ");
         } else {
             System.out.println("Product not found.");
         }
@@ -169,8 +196,8 @@ public class Store {
         while (running) {
             System.out.println("1) Product ID");
             System.out.println("2) Product Name");
-            System.out.println("3) Products Under $10");
-            System.out.println("4) Products Under $20");
+            System.out.println("3) Products Under $20");
+            System.out.println("4) Products Under $50");
             System.out.println("0) Back");
 
 
@@ -179,24 +206,24 @@ public class Store {
                 case "1":
                     System.out.println("Enter Product ID: ");
                     String id = scanner.nextLine().trim();
-                    filterById(id);
+                    filterById(id, scanner);
                     break;
 
 
                 case "2":
                     System.out.println("Enter Product Name: ");
                     String name = scanner.nextLine().trim();
-                    filterByName(name);
+                    filterByName(name, scanner);
                     break;
 
 
                 case "3":
-                    filterByUnderTen();
+                    filterByUnderTwenty(scanner);
                     break;
 
 
                 case "4":
-                    filterByUnderTwenty();
+                    filterByUnderFifty(scanner);
                     break;
 
                 case "0":
@@ -212,70 +239,121 @@ public class Store {
 
     }
 
-    public static void filterById(String id) {
-        boolean foundProducts = false;
+    public static void filterById(String id, Scanner scanner) {
         for (Product product : inventory) {
             if (product.getId().equalsIgnoreCase(id)) {
-                System.out.println("ID: " + product.getId() +
-                        " | Name: " + product.getName() +
-                        " | Price: " + product.getPrice());
-
-                foundProducts = true;
+                displayProductDetails(product, scanner);
+                return;
             }
         }
-
-        if (!foundProducts) {
-            System.out.println("No transactions found in the specified date range.");
-        }
+        System.out.println("No product found with ID: " + id);
     }
 
-    public static void filterByName(String name) {
-        boolean foundProducts = false;
+    public static void filterByName(String name, Scanner scanner) {
         for (Product product : inventory) {
             if (product.getName().equalsIgnoreCase(name)) {
-                System.out.println("ID: " + product.getId() +
-                        " | Name: " + product.getName() +
-                        " | Price: " + product.getPrice());
-
-                foundProducts = true;
+                displayProductDetails(product, scanner);
+                return;
             }
         }
+        System.out.println("No product found with name: " + name);
+    }
 
-        if (!foundProducts) {
-            System.out.println("No transactions found in the specified date range.");
+    private static void displayProductDetails(Product product, Scanner scanner) {
+        System.out.println("ID: " + product.getId() +
+                " | Name: " + product.getName() +
+                " | Price: " + product.getPrice());
+        System.out.println(" ");
+        System.out.println("1. Add an item to cart");
+        System.out.println("0. Go back");
+        int addSearch = scanner.nextInt();
+        scanner.nextLine();
+        if (addSearch == 1) {
+            addToCart(scanner, inventory, cart);
+        } else if (addSearch == 0) {
+            searchProducts(scanner);
+        }
+
+        System.out.println(" ");
+        System.out.println("1. Add another item to cart");
+        System.out.println("0. Go back");
+        int addSearch2 = scanner.nextInt();
+        scanner.nextLine();
+        if (addSearch2 == 1) {
+            addToCart(scanner, inventory, cart);
+        } else if (addSearch2 == 0) {
+            System.out.println("Returning to previous page.");
+            System.out.println(" ");
         }
     }
 
-    public static void filterByUnderTen() {
-        boolean foundProducts = false;
-        for (Product product : inventory) {
-            if (product.getPrice() <= 10) {
-                System.out.println("ID: " + product.getId() +
-                        " | Name: " + product.getName() +
-                        " | Price: " + product.getPrice());
 
-                foundProducts = true;
+    public static void filterByUnderTwenty(Scanner scanner) {
+        ArrayList<Product> productsUnder20 = new ArrayList<>();
+        boolean foundProducts = false;
+
+        // Filter products under $20 and add them to the productsUnder20 list
+        for (Product product : inventory) {
+            if (product.getPrice() < 20) {
+                productsUnder20.add(product);
             }
         }
-        if (!foundProducts) {
-            System.out.println("No products found in the specified price range.");
+
+        // Display all products under $20
+        for (Product product : productsUnder20) {
+            System.out.println("ID: " + product.getId() +
+                    " | Name: " + product.getName() +
+                    " | Price: " + product.getPrice());
+        }
+
+        // Ask the user to add products to the cart
+        System.out.println("\nDo you want to add any of these products to your cart? Enter the ID of the product to add or 0 to go back.");
+        String input = scanner.nextLine().trim();
+        if (!input.equals("0")) {
+            Product selectedProduct = findProductById(productsUnder20, input);
+            if (selectedProduct != null) {
+                cart.add(selectedProduct);
+                System.out.println(selectedProduct.getName() + " (ID: " + selectedProduct.getId() +
+                        ") added to cart");
+            } else {
+                System.out.println("Invalid product ID.");
+            }
+        } else {
+            System.out.println("Returning to previous page.");
         }
     }
 
 
-    public static void filterByUnderTwenty() {
+    public static void filterByUnderFifty(Scanner scanner) {
+        ArrayList<Product> productsUnder50 = new ArrayList<>();
         boolean foundProducts = false;
-        for (Product product : inventory) {
-            if (product.getPrice() <= 20) {
-                System.out.println("ID: " + product.getId() +
-                        " | Name: " + product.getName() +
-                        " | Price: " + product.getPrice());
 
-                foundProducts = true;
+        for (Product product : inventory) {
+            if (product.getPrice() <= 50) {
+                productsUnder50.add(product);
             }
         }
-        if (!foundProducts) {
-            System.out.println("No products found in the specified price range.");
+
+
+        for (Product product : productsUnder50) {
+            System.out.println("ID: " + product.getId() +
+                    " | Name: " + product.getName() +
+                    " | Price: " + product.getPrice());
+        }
+
+        System.out.println("\nDo you want to add any of these products to your cart? Enter the ID of the product to add or 0 to go back.");
+        String input = scanner.nextLine().trim();
+        if (!input.equals("0")) {
+            Product selectedProduct = findProductById(productsUnder50, input);
+            if (selectedProduct != null) {
+                cart.add(selectedProduct);
+                System.out.println(selectedProduct.getName() + " (ID: " + selectedProduct.getId() +
+                        ") added to cart");
+            } else {
+                System.out.println("Invalid product ID.");
+            }
+        } else {
+            System.out.println("Returning to previous page.");
         }
     }
 
@@ -293,13 +371,73 @@ public class Store {
         String placeOrder = scanner.nextLine();
 
         if (placeOrder.equalsIgnoreCase("Y")) {
-            System.out.println("Thanks for yor purchase baddie ❤︎. Total amount deducted: $" + totalAmount);
+            displayReceipt(cart,totalAmount);
+            createReceiptFile(cart,totalAmount);
+            System.out.println("Thanks for your purchase 𝔠𝔥𝔦𝔠𝔞 ❤︎. Total amount deducted: $" + totalAmount);
             cart.clear();
-            // Assuming confirmPurchase method deducts from account
+            // IMPORTANT ☝︎ that will empty the cart after checkout
         } else if (placeOrder.equalsIgnoreCase("X")) {
             System.out.println("Returning to previous screen.");
         } else {
             System.out.println("Invalid input. Returning to previous screen.");
+        }
+    }
+
+    private static void displayReceipt(ArrayList<Product> cart, double totalAmount){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
+        Date date = new Date();
+        System.out.println("♱ ❦ 𝓒𝔥𝔦𝔠𝔞𝔰 𝓓𝔢 𝓜𝔬𝓭𝔞 ❦ ♱");
+        System.out.println("Sales Receipt\n\n");
+        System.out.println("Date and Time: " + dateFormat.format(date) + "\n");
+        System.out.println("Total Amount: $" + totalAmount + "\n\n");
+
+        System.out.println("Cart Contents:\n");
+        for (Product product : cart){
+            System.out.println(product.getName() + " (ID: " + product.getId() +
+                    ") - Price: $" + product.getPrice() + "\n");
+
+        }
+
+
+
+    }
+
+
+    private static void createReceiptFile(ArrayList<Product> cart, double totalAmount) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
+        Date date = new Date();
+        String fileName = dateFormat.format(date) + ".txt";
+
+        String directoryPath = "Receipts/";
+        File directory = new File(directoryPath);
+
+        try {
+
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+
+
+            File receiptFile = new File(directoryPath + fileName);
+            FileWriter writer = new FileWriter(receiptFile);
+
+
+            writer.write("Sales Receipt\n\n");
+            writer.write("Date and Time: " + dateFormat.format(date) + "\n");
+            writer.write("Total Amount: $" + totalAmount + "\n\n");
+
+
+            writer.write("Cart Contents:\n");
+            for (Product product : cart) {
+                writer.write(product.getName() + " (ID: " + product.getId() +
+                        ") - Price: $" + product.getPrice() + "\n");
+            }
+
+            // Close the writer
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error creating receipt file: " + e.getMessage());
         }
     }
 

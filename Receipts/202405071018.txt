@@ -1,0 +1,8 @@
+Sales Receipt
+
+Date and Time: 202405071018
+Total Amount: $37.97
+
+Cart Contents:
+Section. 80 Record (ID: LIT777) - Price: $17.99
+Belly Button Ring 2pk (ID: SKI303) - Price: $19.98
