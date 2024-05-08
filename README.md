@@ -53,8 +53,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-
-![ChicasDeMoodaGif.gif](..%2F..%2FChicasDeMoodaGif.gif)
+![ChicasDeMoodaGif.gif](/Users/bryannewoods/Documents/ChicasDeMoodaGif.gif)
 
 
 ## Future Work
