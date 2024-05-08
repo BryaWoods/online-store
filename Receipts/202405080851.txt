@@ -1,0 +1,7 @@
+Sales Receipt
+
+Date and Time: 202405080851
+Total Amount: $89.95
+
+Cart Contents:
+Beats Pill (ID: BMW111) - Price: $89.95

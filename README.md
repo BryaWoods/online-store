@@ -53,32 +53,27 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
 
-![Application Screenshot](path/to/your/screenshot.png)
+![ChicasDeMoodaGif.gif](..%2F..%2FChicasDeMoodaGif.gif)
+
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
 
 - Additional feature to be developed.
 - Improvement of current functionalities.
 
 ## Resources
 
-List resources such as tutorials, articles, or documentation that helped you during the project.
 
 - [Java Programming Tutorial](https://www.example.com)
 - [Effective Java](https://www.example.com)
 
-## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
 
 ## Thanks
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to Raymond Maroun for continuous support and guidance.
+- Thank you to Raymond Maroun and Jesus for continuous support and guidance.
 - A special thanks to all teammates for their dedication and teamwork.
