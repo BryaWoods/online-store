@@ -299,27 +299,6 @@ public class Store {
         System.out.printf("✰%-8s | %-30s | %-10s %-10s%n" ,product.getId()  , product.getName() , product.getPrice(),"✰" );
         System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
 
-        /*System.out.println("1. Add an item to cart");
-        System.out.println("0. Go back");
-        int addSearch = scanner.nextInt();
-        scanner.nextLine();
-        if (addSearch == 1) {
-            addToCart(scanner, inventory, cart);
-        } else if (addSearch == 0) {
-            searchProducts(scanner);
-        }
-
-        System.out.println(" ");
-        System.out.println("1. Add another item to cart");
-        System.out.println("0. Go back");
-        int addSearch2 = scanner.nextInt();
-        scanner.nextLine();
-        if (addSearch2 == 1) {
-            addToCart(scanner, inventory, cart);
-        } else if (addSearch2 == 0) {
-            System.out.println("Returning to previous page.");
-            System.out.println(" ");
-        }*/
     }
 
 
@@ -339,20 +318,6 @@ public class Store {
         }
         System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
 
-       /* System.out.println("\nDo you want to add any of these products to your cart? Enter the ID of the product to add or 0 to go back.");
-        String input = scanner.nextLine().trim();
-        if (!input.equals("0")) {
-            Product selectedProduct = findProductById(productsUnder20, input);
-            if (selectedProduct != null) {
-                cart.add(selectedProduct);
-                System.out.println(selectedProduct.getName() + " (ID: " + selectedProduct.getId() +
-                        ") added to cart");
-            } else {
-                System.out.println("Invalid product ID.");
-            }
-        } else {
-            System.out.println("Returning to previous page.");
-        }*/
     }
 
 
@@ -365,27 +330,14 @@ public class Store {
             }
         }
 
+        System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
+        System.out.printf("✰%-8s | %-30s | %-10s %-10s%n",  "ID", "Name", "Price", "✰");
 
         for (Product product : productsUnder50) {
-            System.out.println("ID: " + product.getId() +
-                    " | Name: " + product.getName() +
-                    " | Price: " + product.getPrice());
+            System.out.printf("✰%-8s | %-30s | %-10s %-10s%n" ,product.getId()  , product.getName() , product.getPrice(),"✰" );
         }
+        System.out.println("✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰ ✰");
 
-       /* System.out.println("\nDo you want to add any of these products to your cart? Enter the ID of the product to add or 0 to go back.");
-        String input = scanner.nextLine().trim();
-        if (!input.equals("0")) {
-            Product selectedProduct = findProductById(productsUnder50, input);
-            if (selectedProduct != null) {
-                cart.add(selectedProduct);
-                System.out.println(selectedProduct.getName() + " (ID: " + selectedProduct.getId() +
-                        ") added to cart");
-            } else {
-                System.out.println("Invalid product ID.");
-            }
-        } else {
-            System.out.println("Returning to previous page.");
-        }*/
     }
 
 
