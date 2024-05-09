@@ -1,0 +1,7 @@
+Sales Receipt
+
+Date and Time: 202405090051
+Total Amount: $17.99
+
+Cart Contents:
+Section. 80 Record (ID: LIT777) - Price: $17.99

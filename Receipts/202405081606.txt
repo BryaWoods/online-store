@@ -1,0 +1,7 @@
+Sales Receipt
+
+Date and Time: 202405081606
+Total Amount: $44.99
+
+Cart Contents:
+GTA VI (ID: BMW333) - Price: $44.99
